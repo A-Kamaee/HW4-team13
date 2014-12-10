@@ -8,11 +8,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="secondPhase.MainPage" >
 
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="For more info drag the button..." />
+    <!-- <com.github.mikephil.charting.charts.BarChart -->
+    <!-- android:id="@+id/chart1" -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="match_parent" -->
+    <!-- android:layout_above="@+id/seekBar1" /> -->
+
+
+    <!-- <TextView -->
+    <!-- android:id="@+id/text1" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:text="For more info drag the button..." /> -->
 
     <LinearLayout
         android:id="@+id/canvasview"
@@ -30,16 +37,11 @@
         android:handle="@+id/handle"
         android:orientation="vertical" >
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/chart1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/seekBar1" />
-
         <Button
             android:id="@+id/handle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/mybutton"
             android:text="+" />
 
         <LinearLayout
@@ -49,17 +51,22 @@
             android:background="#80FF00"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hello from JCG!" />
+            <!-- <TextView -->
+            <!-- android:id="@+id/text2" -->
+            <!-- android:layout_width="wrap_content" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:text="Hello from JCG!" /> -->
+            <!-- <Button -->
+            <!-- android:id="@+id/click" -->
+            <!-- android:layout_width="wrap_content" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:text="Click me" /> -->
 
-            <Button
-                android:id="@+id/click"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Click me" />
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/chart12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/seekBar1" />
         </LinearLayout>
     </SlidingDrawer>
 

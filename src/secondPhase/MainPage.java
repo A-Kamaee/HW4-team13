@@ -41,6 +41,7 @@ public class MainPage extends Activity {
 
 	ActionBar actionBar;
 	static int touched = 0;
+	static int clickable = 0;
 
 	private SlidingDrawer drawer;
 	private Button handle;
@@ -63,6 +64,7 @@ public class MainPage extends Activity {
 		actionBar.hide();
 
 		// mohem *****************
+
 		initializeDrawer();
 		// chartInitialization();
 
@@ -81,7 +83,7 @@ public class MainPage extends Activity {
 				if (upordown == null)
 					return false;
 
-				if (touched == 0 && upordown.equals("up")) {
+				if (clickable == 0 && touched == 0 && upordown.equals("up")) {
 					touched = 1;
 					// Create custom dialog object
 					final Dialog dialog = new Dialog(MainPage.this);
@@ -114,7 +116,7 @@ public class MainPage extends Activity {
 					// Toast.LENGTH_SHORT).show();
 				}
 
-				if (touched == 0 && upordown.equals("down")) {
+				if (clickable == 0 && touched == 0 && upordown.equals("down")) {
 					touched = 1;
 					// Create custom dialog object
 					final Dialog dialog = new Dialog(MainPage.this);
@@ -165,8 +167,8 @@ public class MainPage extends Activity {
 			@Override
 			public void onDrawerOpened() {
 				handle.setText("-");
-				 chartInitialization();
-
+				chartInitialization();
+				clickable = 1;
 				// text1.setText("Already dragged...");
 			}
 		});
@@ -176,6 +178,7 @@ public class MainPage extends Activity {
 			@Override
 			public void onDrawerClosed() {
 				handle.setText("+");
+				clickable = 0;
 				// text1.setText("For more info drag the button...");
 			}
 		});
@@ -228,7 +231,7 @@ public class MainPage extends Activity {
 	}
 
 	public void chartInitialization() {
-		mChart = (BarChart) findViewById(R.id.chart1);
+		mChart = (BarChart) findViewById(R.id.chart12);
 
 		// enable the drawing of values
 		mChart.setDrawYValues(true);
@@ -281,31 +284,38 @@ public class MainPage extends Activity {
 
 		mChart.setValueTypeface(tf);
 
-		setData(12, 50);
+		setData(365);
 	}
 
-	private void setData(int count, float range) {
+	private void setData(int count) {
 		String[] mMonths = new String[] { "Jan", "Feb", "Mar", "Apr", "May",
 				"Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec" };
 
 		ArrayList<String> xVals = new ArrayList<String>();
 		for (int i = 0; i < count; i++) {
-			xVals.add(mMonths[i % 12]);
+			// xVals.add(mMonths[i % 12]);
+			xVals.add(i + "");
 		}
 
 		ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
-
-		for (int i = 0; i < count; i++) {
-			float mult = (range + 1);
-			float val = (float) (Math.random() * mult);
-			yVals1.add(new BarEntry(val, i));
-		}
+		// for (int i = 0; i < count; i++) {
+		// float mult = (range + 1);
+		// float val = (float) (Math.random() * mult);
+		// yVals1.add(new BarEntry(val, i));
+		// }
+		yVals1.add(new BarEntry(1, 1));
+		yVals1.add(new BarEntry(2, 2));
+		yVals1.add(new BarEntry(3, 3));
 
 		BarDataSet set1 = new BarDataSet(yVals1, "DataSet");
 		set1.setBarSpacePercent(35f);
 
+		BarDataSet set2 = new BarDataSet(yVals1, "DataSet");
+		set2.setBarSpacePercent(35f);
+
 		ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
 		dataSets.add(set1);
+		dataSets.add(set2);
 
 		BarData data = new BarData(xVals, dataSets);
 
@@ -347,8 +357,8 @@ public class MainPage extends Activity {
 			paint.setStyle(Style.FILL);
 			paint.setColor(Color.BLACK);
 
-			canvas.drawText("درآمدها", x / 2 - 35, y / 2 + 150, paint);
-			canvas.drawText("هزینه های جاری", x / 2 - 85, y / 2 - 140, paint);
+			canvas.drawText("هزینه جاری", x / 2 - 35, y / 2 + 150, paint);
+			canvas.drawText("درآمد", x / 2 - 85, y / 2 - 140, paint);
 
 		}
 	}
